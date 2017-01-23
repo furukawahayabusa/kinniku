@@ -1,0 +1,42 @@
+
+
+<ons-page ng-controller="DetailController">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()">
+        <ons-icon icon="ion-navicon"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">{{data.bunrui}}</div>
+  </ons-toolbar>
+
+  <ons-list modifier="inset">
+    <ons-list-item style="text-align: center">
+      <img src="images/{{data.img}}.png" style="margin-top: 10px" width="90%" height="90%">
+      <br>
+      <span class="label">{{data.name}}</span>
+    </ons-list-item>
+  </ons-list>
+
+  <ons-list modifier="inset" style="margin-top: 10px">
+    <ons-list-header class="title">起始停止</ons-list-header>
+    <ons-list-item class="kishi">{{data.kishi}}</ons-list-item>
+    <ons-list-item class="teishi">{{data.teishi}}</ons-list-item>
+  </ons-list>
+
+  <ons-list modifier="inset" style="margin-top: 10px">
+    <ons-list-header class="title">機能</ons-list-header>
+    <ons-list-item class="kinou">{{data.kinou}}</ons-list-item>
+  </ons-list>
+
+  <ons-list modifier="inset" style="margin-top: 10px">
+    <ons-list-header class="title">神経支配</ons-list-header>
+    <ons-list-item class="shinkei">{{data.shinkei}}</ons-list-item>
+  </ons-list>
+
+  <ons-list modifier="inset" style="margin-top: 10px">
+    <ons-list-item class="desc">
+      {{data.desc}}
+    </ons-list-item>
+  </ons-list>
+</ons-page>

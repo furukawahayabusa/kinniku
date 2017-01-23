@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        var app = ons.bootstrap('myapp');
+        
+        app.controller('MenuController',function($scope,$http,SharedData){
+            $http.get("data.json").then(function(response){
+                $scope.dataList = response.data;
+            }); 
+
+            $scope.showDetailPage = function(data){
+                // 共有サービスにデータを登録
+                SharedData.set(data);
+                // detail.htmlを表示
+                app.slidingMenu.setMainPage('detail.html', { closeMenu: true });
+            }
+        });
+        
+        app.factory('SharedData', function(){
+            var sharedData = {};
+            sharedData.data = {};
+            
+            sharedData.set = function(data){
+                sharedData.data = data;
+            };
+            
+            sharedData.get = function(){
+                return sharedData.data;
+            };
+            return sharedData;
+        });
+
+        app.controller('DetailController', function($scope, SharedData) {
+            $scope.data = SharedData.get();  
+        })
+            
+        </script>
+</head>
+<body>
+
+    <ons-sliding-menu 
+        var="app.slidingMenu" 
+        menu-page="menu.html" 
+        main-page="top.html" 
+        side="left" 
+        type="reveal" 
+        max-slide-distance="200px">
+
+    </ons-sliding-menu>
+    
+</body>
+</html>
